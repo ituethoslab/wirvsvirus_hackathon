@@ -2,12 +2,9 @@
 
 import json
 import os
+from zipfile import ZipFile
 from bs4 import BeautifulSoup
 from tqdm import tqdm
-from zipfile import ZipFile
-
-DATAFILE = 'data/submissionsWithDetail20200331_171116.json'
-DESC_DIRECTORY = 'tmp/submission_descriptions'
 
 
 def read_datafile(path):
@@ -51,7 +48,11 @@ def create_zip(directory):
             zipfile.write(os.path.join(final_dir, desc_file))
 
 
-submissions = read_datafile(DATAFILE)
+if __name__ == '__main__':
+    DATAFILE = 'data/submissionsWithDetail20200331_171116.json'
+    DESC_DIRECTORY = 'tmp/submission_descriptions'
 
-write_descriptions(submissions, DESC_DIRECTORY)
-create_zip(DESC_DIRECTORY)
+    submissions = read_datafile(DATAFILE)
+
+    write_descriptions(submissions, DESC_DIRECTORY)
+    create_zip(DESC_DIRECTORY)
